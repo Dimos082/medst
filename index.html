@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>e-Recepta</title>
+  <link rel="icon" href="resources/img/favicon.ico" />
+  <link rel="stylesheet" href="resources/css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header__title" data-i18n="title">E-RECEPTA</div>
+
+    <div class="lang">
+      <button class="lang__btn" data-lang="pl">PL</button>
+      <button class="lang__btn" data-lang="uk">UA</button>
+      <button class="lang__btn" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <div class="steps">
+        <button id="stepBtn1" class="steps__btn steps__btn--active" type="button" data-i18n="step1">Wywiad medyczny</button>
+        <button id="stepBtn2" class="steps__btn" type="button" data-i18n="step2">Twoje dane</button>
+      </div>
+
+      <form id="wizardForm">
+        <!-- STEP 1 -->
+        <section id="step1" class="step step--active">
+          <h2 data-i18n="medicalHeader">Wywiad medyczny</h2>
+
+          <div class="row">
+            <label class="radio">
+              <input type="radio" name="medMode" value="self" checked />
+              <span data-i18n="modeSelf">Samodzielnie chcę wybrać lek</span>
+            </label>
+            <label class="radio">
+              <input type="radio" name="medMode" value="doctor" />
+              <span data-i18n="modeDoctor">Niech zdecyduje lekarz</span>
+            </label>
+          </div>
+
+          <div id="drugBlock" class="field">
+            <label for="drugName" data-i18n="drugNameLabel">Wpisz nazwę leku*</label>
+            <input id="drugName" type="text" autocomplete="off" placeholder="" />
+            <div id="drugHint" class="hint" data-i18n="drugHint">Zacznij pisać nazwę, podpowiedzi pojawią się automatycznie.</div>
+            <div id="drugResults" class="dropdown"></div>
+            <input id="drugId" type="hidden" />
+          </div>
+
+          <div class="field">
+            <label for="packages" data-i18n="packagesLabel">Wybierz ile opakowań potrzebujesz (max 3)</label>
+            <input id="packages" type="number" min="1" max="3" value="1" />
+          </div>
+
+          <div class="field">
+            <label for="symptoms" data-i18n="symptomsLabel">Napisz co Ci dolega...</label>
+            <textarea id="symptoms" rows="4" placeholder=""></textarea>
+          </div>
+
+          <div class="field">
+            <label data-i18n="allergiesQ">Alergie? Czy jesteś na coś uczulony?</label>
+            <div class="row">
+              <label class="radio"><input type="radio" name="allergies" value="yes" /> <span data-i18n="yes">Tak</span></label>
+              <label class="radio"><input type="radio" name="allergies" value="no" checked /> <span data-i18n="no">Nie</span></label>
+            </div>
+            <textarea id="allergiesText" rows="2" placeholder="" disabled></textarea>
+          </div>
+
+          <div class="field">
+            <label data-i18n="chronicQ">Czy masz jakieś przewlekłe choroby?</label>
+            <div class="row">
+              <label class="radio"><input type="radio" name="chronic" value="yes" /> <span data-i18n="yes">Tak</span></label>
+              <label class="radio"><input type="radio" name="chronic" value="no" checked /> <span data-i18n="no">Nie</span></label>
+            </div>
+            <textarea id="chronicText" rows="2" placeholder="" disabled></textarea>
+          </div>
+
+          <div class="field">
+            <label for="files" data-i18n="filesLabel">Dodaj pliki (opcjonalnie)</label>
+            <input id="files" type="file" multiple />
+            <div class="hint" data-i18n="filesHint">PDF/JPG/PNG. Dla wersji demo wybierz małe pliki.</div>
+          </div>
+
+          <div class="actions">
+            <button id="nextBtn" class="btn btn--primary" type="button" data-i18n="next">Przejdź dalej</button>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section id="step2" class="step">
+          <h2 data-i18n="personalHeader">Twoje dane</h2>
+
+          <div class="grid2">
+            <div class="field">
+              <label for="firstName" data-i18n="firstName">Imię*</label>
+              <input id="firstName" type="text" required />
+            </div>
+            <div class="field">
+              <label for="lastName" data-i18n="lastName">Nazwisko*</label>
+              <input id="lastName" type="text" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="street" data-i18n="street">Ulica</label>
+            <input id="street" type="text" />
+          </div>
+
+          <div class="grid3">
+            <div class="field">
+              <label for="streetNo" data-i18n="streetNo">Numer domu / lokalu</label>
+              <input id="streetNo" type="text" />
+            </div>
+            <div class="field">
+              <label for="postal" data-i18n="postal">Kod pocztowy</label>
+              <input id="postal" type="text" />
+            </div>
+            <div class="field">
+              <label for="city" data-i18n="city">Miasto</label>
+              <input id="city" type="text" />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label for="phone" data-i18n="phone">Numer telefonu</label>
+              <input id="phone" type="tel" />
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="email">Adres e-mail</label>
+              <input id="email" type="email" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="pesel" data-i18n="pesel">PESEL</label>
+            <input id="pesel" type="text" />
+            <label class="checkbox">
+              <input id="noPesel" type="checkbox" />
+              <span data-i18n="noPesel">Nie mam numeru PESEL</span>
+            </label>
+          </div>
+
+          <div id="noPeselBlock" class="panel" style="display:none;">
+            <div class="grid3">
+              <div class="field">
+                <label for="passport" data-i18n="passport">Numer paszportu*</label>
+                <input id="passport" type="text" />
+              </div>
+              <div class="field">
+                <label for="dob" data-i18n="dob">Data urodzenia*</label>
+                <input id="dob" type="date" />
+              </div>
+              <div class="field">
+                <label for="country" data-i18n="country">Kraj (ISO2)*</label>
+                <input id="country" type="text" placeholder="PL" value="PL" />
+              </div>
+            </div>
+            <div class="hint" data-i18n="countryHint">Wpisz kod kraju ISO2, np. PL, UA, GB.</div>
+          </div>
+
+          <div class="field">
+            <label class="checkbox">
+              <input id="consent" type="checkbox" required />
+              <span data-i18n="consent">Potwierdzam, że podane dane są prawdziwe.</span>
+            </label>
+          </div>
+
+          <div id="status" class="status" aria-live="polite"></div>
+
+          <div class="actions actions--between">
+            <button id="backBtn" class="btn" type="button" data-i18n="back">Wróć</button>
+            <button id="payBtn" class="btn btn--primary" type="submit" data-i18n="pay">Kupuję i płacę</button>
+          </div>
+        </section>
+      </form>
+    </div>
+  </main>
+
+  <script src="resources/js/i18n.js"></script>
+  <script src="resources/js/main.js"></script>
+</body>
+</html>

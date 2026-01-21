@@ -1,0 +1,147 @@
+const I18N = {
+  pl: {
+    title: "E-RECEPTA",
+    step1: "Wywiad medyczny",
+    step2: "Twoje dane",
+    medicalHeader: "Wywiad medyczny",
+    personalHeader: "Twoje dane",
+    modeSelf: "Samodzielnie chcę wybrać lek",
+    modeDoctor: "Niech zdecyduje lekarz",
+    drugNameLabel: "Wpisz nazwę leku*",
+    drugHint: "Zacznij pisać nazwę, podpowiedzi pojawią się automatycznie.",
+    packagesLabel: "Wybierz ile opakowań potrzebujesz (max 3)",
+    symptomsLabel: "Napisz co Ci dolega...",
+    allergiesQ: "Alergie? Czy jesteś na coś uczulony?",
+    chronicQ: "Czy masz jakieś przewlekłe choroby?",
+    yes: "Tak",
+    no: "Nie",
+    filesLabel: "Dodaj pliki (opcjonalnie)",
+    filesHint: "PDF/JPG/PNG. Dla wersji demo wybierz małe pliki.",
+    next: "PRZEJDŹ DALEJ",
+    back: "Wróć",
+    pay: "KUPUJĘ I PŁACĘ",
+    firstName: "Imię*",
+    lastName: "Nazwisko*",
+    street: "Ulica",
+    streetNo: "Numer domu / lokalu",
+    postal: "Kod pocztowy",
+    city: "Miasto",
+    phone: "Numer telefonu",
+    email: "Adres e-mail",
+    pesel: "PESEL",
+    noPesel: "Nie mam numeru PESEL",
+    passport: "Numer paszportu*",
+    dob: "Data urodzenia*",
+    country: "Kraj (ISO2)*",
+    countryHint: "Wpisz kod kraju ISO2, np. PL, UA, GB.",
+    consent: "Potwierdzam, że podane dane są prawdziwe.",
+    errFillRequired: "Uzupełnij wymagane pola.",
+    errPickDrug: "Wybierz lek z listy podpowiedzi.",
+    submitting: "Wysyłam dane do MyDR...",
+    success: "Sukces. Utworzono pacjenta w MyDR. ID: ",
+    failure: "Błąd: "
+  },
+  uk: {
+    title: "Е-РЕЦЕПТ",
+    step1: "Медичне опитування",
+    step2: "Ваші дані",
+    medicalHeader: "Медичне опитування",
+    personalHeader: "Ваші дані",
+    modeSelf: "Я хочу самостійно обрати ліки",
+    modeDoctor: "Нехай вирішить лікар",
+    drugNameLabel: "Введіть назву препарату*",
+    drugHint: "Почніть вводити назву, підказки з’являться автоматично.",
+    packagesLabel: "Скільки упаковок потрібно (макс 3)",
+    symptomsLabel: "Опишіть, що вас турбує...",
+    allergiesQ: "Алергії? Чи є у вас алергія на щось?",
+    chronicQ: "Чи маєте хронічні захворювання?",
+    yes: "Так",
+    no: "Ні",
+    filesLabel: "Додайте файли (необов’язково)",
+    filesHint: "PDF/JPG/PNG. Для демо обирайте невеликі файли.",
+    next: "ДАЛІ",
+    back: "Назад",
+    pay: "КУПУЮ І ПЛАЧУ",
+    firstName: "Ім’я*",
+    lastName: "Прізвище*",
+    street: "Вулиця",
+    streetNo: "Номер будинку/квартири",
+    postal: "Поштовий індекс",
+    city: "Місто",
+    phone: "Телефон",
+    email: "Email",
+    pesel: "PESEL",
+    noPesel: "Я не маю PESEL",
+    passport: "Номер паспорта*",
+    dob: "Дата народження*",
+    country: "Країна (ISO2)*",
+    countryHint: "Введіть ISO2 код країни, напр. PL, UA, GB.",
+    consent: "Підтверджую, що дані правдиві.",
+    errFillRequired: "Заповніть обов’язкові поля.",
+    errPickDrug: "Оберіть ліки зі списку.",
+    submitting: "Надсилаю дані до MyDR...",
+    success: "Успіх. Пацієнта створено. ID: ",
+    failure: "Помилка: "
+  },
+  en: {
+    title: "E-PRESCRIPTION",
+    step1: "Medical interview",
+    step2: "Your details",
+    medicalHeader: "Medical interview",
+    personalHeader: "Your details",
+    modeSelf: "I want to choose the medicine",
+    modeDoctor: "Doctor decides",
+    drugNameLabel: "Medicine name*",
+    drugHint: "Start typing, suggestions will appear automatically.",
+    packagesLabel: "How many packages (max 3)",
+    symptomsLabel: "Describe your symptoms...",
+    allergiesQ: "Allergies?",
+    chronicQ: "Chronic diseases?",
+    yes: "Yes",
+    no: "No",
+    filesLabel: "Attach files (optional)",
+    filesHint: "PDF/JPG/PNG. For demo pick small files.",
+    next: "NEXT",
+    back: "Back",
+    pay: "BUY & PAY",
+    firstName: "First name*",
+    lastName: "Last name*",
+    street: "Street",
+    streetNo: "House/flat number",
+    postal: "Postal code",
+    city: "City",
+    phone: "Phone",
+    email: "Email",
+    pesel: "PESEL",
+    noPesel: "I don't have PESEL",
+    passport: "Passport number*",
+    dob: "Date of birth*",
+    country: "Country (ISO2)*",
+    countryHint: "Enter ISO2 code, e.g. PL, UA, GB.",
+    consent: "I confirm the data is correct.",
+    errFillRequired: "Please fill required fields.",
+    errPickDrug: "Select a medicine from suggestions.",
+    submitting: "Sending data to MyDR...",
+    success: "Success. Patient created. ID: ",
+    failure: "Error: "
+  }
+};
+
+let currentLang = "pl";
+
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || I18N.pl[key] || key;
+}
+
+function setLang(lang) {
+  currentLang = I18N[lang] ? lang : "pl";
+  document.documentElement.lang = currentLang;
+  applyTranslations();
+}
+
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.textContent = t(key);
+  });
+}
